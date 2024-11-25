@@ -1,0 +1,181 @@
+class Fraction:
+    """Classe représentant une fraction et les opérations qui peuvent être effectuées sur celle-ci.
+
+    Auteur : V. Van den Schrieck
+    Date : Octobre 2021
+    Cette classe permet de manipuler des fractions via plusieurs opérations.
+    """
+
+    def __init__(self, num: int = 0, den: int = 1):
+        """Construit une fraction à partir d'un numérateur et d'un dénominateur.
+
+        PRÉCONDITIONS :
+        - 'den' ne doit pas être égal à zéro (division par zéro non définie).
+        - 'num' et `den` doivent être des entiers.
+        POSTCONDITIONS :
+        - La fraction est stockée sous forme simplifiée.
+        - Le dénominateur est toujours positif (le signe est ajusté sur le numérateur si nécessaire).
+        """
+        pass
+    
+
+    @property
+    def numerator(self) -> int:
+        """Retourne le numérateur de la fraction.
+
+        PRÉCONDITIONS : None
+        POSTCONDITIONS :
+        - Return un entier correspondant au numérateur de la fraction.
+        """
+        pass
+
+    @property
+    def denominator(self) -> int:
+        """Retourne le dénominateur de la fraction.
+
+        PRÉCONDITIONS : None
+        POSTCONDITIONS :
+        - Return un entier positif correspondant au dénominateur de la fraction.
+        """
+        pass
+
+    def __str__(self) -> str:
+        """Retourne une représentation textuelle de la fraction sous forme réduite.
+
+        PRÉCONDITIONS : None
+        POSTCONDITIONS :
+        - Return une chaîne de caractères au format 'numérateur/dénominateur' 
+          ou simplement 'numérateur' si le dénominateur est 1.
+        """
+        pass
+
+    def as_mixed_number(self) -> str:
+        """Retourne une représentation textuelle de la fraction sous forme de nombre mixte.
+
+        Un nombre mixte est la somme d'un entier et d'une fraction propre.
+
+        PRÉCONDITIONS : None
+        POSTCONDITIONS :
+        - Return une chaîne au format 'entier + numérateur/dénominateur' 
+          ou simplement 'entier' si la fraction est entière.
+        """
+        pass
+
+    def __add__(self, other: 'Fraction') -> 'Fraction':
+        """Surcharge de l'opérateur + pour les fractions.
+
+        PRÉCONDITIONS :
+        - 'other' doit être une instance de `Fraction`.
+        POSTCONDITIONS :
+        - Return une nouvelle instance de `Fraction` représentant la somme de `self` et `other`, sous forme simplifiée.
+        """
+        pass
+
+    def __sub__(self, other: 'Fraction') -> 'Fraction':
+        """Surcharge de l'opérateur - pour les fractions.
+
+        PRÉCONDITIONS :
+        - 'other' doit être une instance de `Fraction`.
+        POSTCONDITIONS :
+        - Return une nouvelle instance de `Fraction` représentant la différence de `self` et `other`, sous forme simplifiée.
+        """
+        pass
+
+    def __mul__(self, other: 'Fraction') -> 'Fraction':
+        """Surcharge de l'opérateur * pour les fractions.
+
+        PRÉCONDITIONS :
+        - 'other' doit être une instance de `Fraction`.
+        POSTCONDITIONS :
+        - Return une nouvelle instance de `Fraction` représentant le produit de `self` et `other`, sous forme simplifiée.
+        """
+        pass
+
+    def __truediv__(self, other: 'Fraction') -> 'Fraction':
+        """Surcharge de l'opérateur / pour les fractions.
+
+        PRÉCONDITIONS :
+        - 'other' doit être une instance de `Fraction`.
+        - 'other' ne doit pas être égal à zéro.
+        POSTCONDITIONS :
+        - Return une nouvelle instance de `Fraction` représentant le quotient de `self` et `other`, sous forme simplifiée.
+        """
+        pass
+
+    def __pow__(self, power: int) -> 'Fraction':
+        """Surcharge de l'opérateur ** pour les fractions.
+
+        PRÉCONDITIONS :
+        - 'power' doit être un entier.
+        POSTCONDITIONS :
+        - Return une nouvelle instance de `Fraction` représentant `self` élevé à la puissance `power`, sous forme simplifiée.
+        """
+        pass
+
+    def __eq__(self, other: 'Fraction') -> bool:
+        """Surcharge de l'opérateur == pour les fractions.
+
+        PRÉCONDITIONS :
+        - 'other' doit être une instance de `Fraction`.
+        POSTCONDITIONS :
+        - Return True si `self` et `other` sont égaux, False sinon.
+        """
+        pass
+
+    def __float__(self) -> float:
+        """Retourne la valeur décimale de la fraction.
+
+        PRÉCONDITIONS : None
+        POSTCONDITIONS :
+        - Return un flottant correspondant à la valeur de la fraction.
+        """
+        pass
+
+    # TODO : [BONUS] You can overload other operators if you wish (ex : <, >, ...)
+
+    # ------------------ Properties checking  ------------------
+    def is_zero(self) -> bool:
+        """Vérifie si la valeur de la fraction est 0.
+
+        PRÉCONDITIONS : None
+        POSTCONDITIONS :
+        - Return True si la fraction est égale à 0, False sinon.
+        """
+        pass
+
+    def is_integer(self) -> bool:
+        """Vérifie si une fraction est entière (exemple : 8/4, 3, 2/2).
+
+        PRÉCONDITIONS : None
+        POSTCONDITIONS :
+        - Return True si la fraction est entière, False sinon.
+        """
+        pass
+
+    def is_proper(self) -> bool:
+        """Vérifie si la valeur absolue de la fraction est < 1.
+
+        PRÉCONDITIONS : None
+        POSTCONDITIONS :
+        - Return True si la valeur absolue de la fraction est inférieure à 1, False sinon.
+        """
+        pass
+
+    def is_unit(self) -> bool:
+        """Vérifie si le numérateur de la fraction réduite est 1.
+
+        PRÉCONDITIONS : None
+        POSTCONDITIONS :
+        - Return True si la fraction est une fraction unité, False sinon.
+        """
+        pass
+
+    def is_adjacent_to(self, other: 'Fraction') -> bool:
+        """Vérifie si deux fractions diffèrent par une fraction unité.
+
+        PRÉCONDITIONS :
+        - 'other' doit être une instance de `Fraction`.
+        POSTCONDITIONS :
+        - Return True si la valeur absolue de la différence entre `self` et `other` est une fraction unité.
+        """
+        pass
