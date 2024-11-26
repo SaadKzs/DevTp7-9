@@ -1,0 +1,44 @@
+Analyse du rapport Coverage : 77%
+
+Résumé global :
+      - Fraction_implementer.py : 68% de couverture.
+      - TestFraction.py : 89% de couverture.
+      - Couverture totale : 77%.
+
+Cela montre que les tests couvrent une bonne partie du code, mais certaines parties restent non
+testées.
+
+Détails par fichier :
+
+1. Fraction_implementer.py :
+
+   - Ce fichier contient la logique principale de la classe Fraction.
+   - 25 instructions non couvertes (sur 78) : Certaines méthodes ou branches conditionnelles n'ont
+        pas été activées par les tests.
+   - Les méthodes liées à des cas limites, comme les fractions négatives, les divisions par zéro, ou
+        les simplifications automatiques, semblent être partiellement testées.
+
+2. TestFraction.py :
+     - Ce fichier contient les tests unitaires.
+     - 7 instructions non couvertes (sur 64) : Cela pourrait indiquer que certains cas de test n'ont pas
+      été exécutés (par exemple, les cas avec des exceptions ou des branches spécifiques).
+
+Points positifs :
+    - Les principales fonctionnalités de la classe Fraction sont bien couvertes (exemple : addition,
+    division, égalité, propriétés comme is_integer et is_proper).
+    - La couverture des tests pour les méthodes de base montre que le code est robuste dans des
+    conditions normales.
+    Axes d'amélioration :
+    - Ajouter des tests pour couvrir les cas non testés dans Fraction_implementer.py.
+
+ Par exemple :
+      - Vérifier les exceptions (ZeroDivisionError, TypeError).
+      - Tester les fractions avec des numérateurs et dénominateurs négatifs.
+      - Tester les cas de simplifications automatiques (grands nombres, fractions déjà simplifiées, etc.).
+      - Réviser les tests dans TestFraction.py pour inclure les conditions limites qui pourraient manquer.
+      - Tester des scénarios où des erreurs spécifiques pourraient se produire.
+Conclusion :
+
+      - La couverture de 77% est correcte pour une première version.
+      - En ajoutant quelques tests supplémentaires pour les cas spécifiques (exceptions, cas limites), la
+      couverture peut atteindre 90% ou plus, assurant ainsi une validation exhaustive du code.
