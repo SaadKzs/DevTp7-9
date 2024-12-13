@@ -1,8 +1,7 @@
 from math import gcd  # Utilisé pour calculer le PGCD (plus grand commun diviseur)
 
-
 class Fraction:
-    """Classe représentant une fraction et les opérations qui peuvent être effectuées sur celle-ci"""
+    """Classe représentant une fraction et les opérations qui peuvent être effectuées sur celle-ci."""
 
     def __init__(self, num=0, den=1):
         """Construit une fraction à partir d'un numérateur et d'un dénominateur.
@@ -10,111 +9,114 @@ class Fraction:
         PRÉ : 'den' doit être différent de zéro.
         POST : Crée une fraction avec le numérateur `num` et le dénominateur `den`,
                stockée sous forme réduite.
+        EXCEPTIONS : Lève une ValueError si `den` est égal à zéro.
         """
+        if not isinstance(num, int) or not isinstance(den, int):
+            raise TypeError("Les numérateur et dénominateur doivent être des entiers.")
         if den == 0:
             raise ValueError("Le dénominateur ne peut pas être zéro.")
-        self.num = num
-        self.den = den
+        self._num = num
+        self._den = den
         self._reduce()
 
     def _reduce(self):
         """Simplifie la fraction pour qu'elle soit sous forme réduite."""
-        common_divisor = gcd(self.num, self.den)
-        self.num //= common_divisor
-        self.den //= common_divisor
-        if self.den < 0:  # Assure que le dénominateur est toujours positif
-            self.num = -self.num
-            self.den = -self.den
+        common_divisor = gcd(self._num, self._den)
+        self._num //= common_divisor
+        self._den //= common_divisor
+        if self._den < 0:  # Assure que le dénominateur est toujours positif
+            self._num = -self._num
+            self._den = -self._den
 
     @property
     def numerator(self):
         """Retourne le numérateur de la fraction."""
-        return self.num
+        return self._num
 
     @property
     def denominator(self):
         """Retourne le dénominateur de la fraction."""
-        return self.den
+        return self._den
 
     def __str__(self):
         """Retourne une représentation textuelle de la fraction sous forme réduite."""
-        if self.den == 1:
-            return str(self.num)
-        return f"{self.num}/{self.den}"
+        if self._den == 1:
+            return str(self._num)
+        return f"{self._num}/{self._den}"
 
     def as_mixed_number(self):
         """Retourne une représentation textuelle de la fraction sous forme de nombre mixte."""
-        whole = self.num // self.den
-        remainder = abs(self.num % self.den)
+        whole = self._num // self._den
+        remainder = abs(self._num % self._den)
         if remainder == 0:
             return str(whole)
-        return f"{whole} {remainder}/{self.den}" if whole != 0 else f"{remainder}/{self.den}"
+        return f"{whole} {remainder}/{self._den}" if whole != 0 else f"{remainder}/{self._den}"
 
     def __add__(self, other):
         """Surcharge de l'opérateur + pour les fractions."""
         if not isinstance(other, Fraction):
             raise TypeError("L'opérande doit être une instance de Fraction.")
-        new_num = self.num * other.den + other.num * self.den
-        new_den = self.den * other.den
+        new_num = self._num * other._den + other._num * self._den
+        new_den = self._den * other._den
         return Fraction(new_num, new_den)
 
     def __sub__(self, other):
         """Surcharge de l'opérateur - pour les fractions."""
         if not isinstance(other, Fraction):
             raise TypeError("L'opérande doit être une instance de Fraction.")
-        new_num = self.num * other.den - other.num * self.den
-        new_den = self.den * other.den
+        new_num = self._num * other._den - other._num * self._den
+        new_den = self._den * other._den
         return Fraction(new_num, new_den)
 
     def __mul__(self, other):
         """Surcharge de l'opérateur * pour les fractions."""
         if not isinstance(other, Fraction):
             raise TypeError("L'opérande doit être une instance de Fraction.")
-        return Fraction(self.num * other.num, self.den * other.den)
+        return Fraction(self._num * other._num, self._den * other._den)
 
     def __truediv__(self, other):
         """Surcharge de l'opérateur / pour les fractions."""
         if not isinstance(other, Fraction):
             raise TypeError("L'opérande doit être une instance de Fraction.")
-        if other.num == 0:
+        if other._num == 0:
             raise ZeroDivisionError("Impossible de diviser par une fraction avec un numérateur de 0.")
-        return Fraction(self.num * other.den, self.den * other.num)
+        return Fraction(self._num * other._den, self._den * other._num)
 
     def __pow__(self, other):
         """Surcharge de l'opérateur ** pour les fractions."""
         if not isinstance(other, int):
             raise TypeError("L'exposant doit être un entier.")
-        return Fraction(self.num**other, self.den**other)
+        return Fraction(self._num**other, self._den**other)
 
     def __eq__(self, other):
         """Surcharge de l'opérateur == pour les fractions."""
         if not isinstance(other, Fraction):
             raise TypeError("L'opérande doit être une instance de Fraction.")
-        return self.num == other.num and self.den == other.den
+        return self._num == other._num and self._den == other._den
 
     def __float__(self):
         """Retourne la valeur décimale de la fraction."""
-        return self.num / self.den
+        return self._num / self._den
 
     def is_zero(self):
         """Vérifie si la valeur de la fraction est 0."""
-        return self.num == 0
+        return self._num == 0
 
     def is_integer(self):
         """Vérifie si une fraction est entière."""
-        return self.num % self.den == 0
+        return self._num % self._den == 0
 
     def is_proper(self):
         """Vérifie si la valeur absolue de la fraction est < 1."""
-        return abs(self.num) < self.den
+        return abs(self._num) < self._den
 
     def is_unit(self):
         """Vérifie si le numérateur de la fraction est 1 dans sa forme réduite."""
-        return abs(self.num) == 1 and self.den == 1
+        return abs(self._num) == 1 and self._den == 1
 
     def is_adjacent_to(self, other):
         """Vérifie si deux fractions diffèrent par une fraction unité."""
         if not isinstance(other, Fraction):
             raise TypeError("L'opérande doit être une instance de Fraction.")
         diff = abs(self - other)
-        return diff.num == 1 and diff.den > 1
+        return diff._num == 1 and diff._den > 1
