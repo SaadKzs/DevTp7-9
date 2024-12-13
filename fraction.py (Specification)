@@ -13,19 +13,20 @@ class Fraction:
         - 'den' ne doit pas être égal à zéro (division par zéro non définie).
         - 'num' et `den` doivent être des entiers.
         POSTCONDITIONS :
-        - La fraction est stockée sous forme simplifiée.
+        - La fraction est stockée sous forme simplifiée grâce au PGCD.
         - Le dénominateur est toujours positif (le signe est ajusté sur le numérateur si nécessaire).
+        EXCEPTIONS :
+        - Lève une `ValueError` si 'den' est nul.
         """
         pass
-    
 
     @property
     def numerator(self) -> int:
         """Retourne le numérateur de la fraction.
 
-        PRÉCONDITIONS : None
+        PRÉCONDITIONS : -
         POSTCONDITIONS :
-        - Return un entier correspondant au numérateur de la fraction.
+        - Retourne un entier correspondant au numérateur de la fraction.
         """
         pass
 
@@ -33,18 +34,18 @@ class Fraction:
     def denominator(self) -> int:
         """Retourne le dénominateur de la fraction.
 
-        PRÉCONDITIONS : None
+        PRÉCONDITIONS : -
         POSTCONDITIONS :
-        - Return un entier positif correspondant au dénominateur de la fraction.
+        - Retourne un entier positif correspondant au dénominateur de la fraction.
         """
         pass
 
     def __str__(self) -> str:
         """Retourne une représentation textuelle de la fraction sous forme réduite.
 
-        PRÉCONDITIONS : None
+        PRÉCONDITIONS : -
         POSTCONDITIONS :
-        - Return une chaîne de caractères au format 'numérateur/dénominateur' 
+        - Retourne une chaîne de caractères au format 'numérateur/dénominateur'
           ou simplement 'numérateur' si le dénominateur est 1.
         """
         pass
@@ -52,11 +53,9 @@ class Fraction:
     def as_mixed_number(self) -> str:
         """Retourne une représentation textuelle de la fraction sous forme de nombre mixte.
 
-        Un nombre mixte est la somme d'un entier et d'une fraction propre.
-
-        PRÉCONDITIONS : None
+        PRÉCONDITIONS : -
         POSTCONDITIONS :
-        - Return une chaîne au format 'entier + numérateur/dénominateur' 
+        - Retourne une chaîne au format 'entier + numérateur/dénominateur'
           ou simplement 'entier' si la fraction est entière.
         """
         pass
@@ -67,7 +66,9 @@ class Fraction:
         PRÉCONDITIONS :
         - 'other' doit être une instance de `Fraction`.
         POSTCONDITIONS :
-        - Return une nouvelle instance de `Fraction` représentant la somme de `self` et `other`, sous forme simplifiée.
+        - Retourne une nouvelle instance de `Fraction` représentant la somme de `self` et `other`, sous forme simplifiée.
+        EXCEPTIONS :
+        - Lève une `TypeError` si 'other' n'est pas une instance de `Fraction`.
         """
         pass
 
@@ -77,7 +78,9 @@ class Fraction:
         PRÉCONDITIONS :
         - 'other' doit être une instance de `Fraction`.
         POSTCONDITIONS :
-        - Return une nouvelle instance de `Fraction` représentant la différence de `self` et `other`, sous forme simplifiée.
+        - Retourne une nouvelle instance de `Fraction` représentant la différence de `self` et `other`, sous forme simplifiée.
+        EXCEPTIONS :
+        - Lève une `TypeError` si 'other' n'est pas une instance de `Fraction`.
         """
         pass
 
@@ -87,7 +90,9 @@ class Fraction:
         PRÉCONDITIONS :
         - 'other' doit être une instance de `Fraction`.
         POSTCONDITIONS :
-        - Return une nouvelle instance de `Fraction` représentant le produit de `self` et `other`, sous forme simplifiée.
+        - Retourne une nouvelle instance de `Fraction` représentant le produit de `self` et `other`, sous forme simplifiée.
+        EXCEPTIONS :
+        - Lève une `TypeError` si 'other' n'est pas une instance de `Fraction`.
         """
         pass
 
@@ -96,9 +101,12 @@ class Fraction:
 
         PRÉCONDITIONS :
         - 'other' doit être une instance de `Fraction`.
-        - 'other' ne doit pas être égal à zéro.
+        - Le numérateur de 'other' ne doit pas être égal à zéro.
         POSTCONDITIONS :
-        - Return une nouvelle instance de `Fraction` représentant le quotient de `self` et `other`, sous forme simplifiée.
+        - Retourne une nouvelle instance de `Fraction` représentant le quotient de `self` et `other`, sous forme simplifiée.
+        EXCEPTIONS :
+        - Lève une `TypeError` si 'other' n'est pas une instance de `Fraction`.
+        - Lève une `ZeroDivisionError` si 'other' a un numérateur égal à zéro.
         """
         pass
 
@@ -108,7 +116,9 @@ class Fraction:
         PRÉCONDITIONS :
         - 'power' doit être un entier.
         POSTCONDITIONS :
-        - Return une nouvelle instance de `Fraction` représentant `self` élevé à la puissance `power`, sous forme simplifiée.
+        - Retourne une nouvelle instance de `Fraction` représentant `self` élevé à la puissance `power`, sous forme simplifiée.
+        EXCEPTIONS :
+        - Lève une `TypeError` si 'power' n'est pas un entier.
         """
         pass
 
@@ -118,55 +128,54 @@ class Fraction:
         PRÉCONDITIONS :
         - 'other' doit être une instance de `Fraction`.
         POSTCONDITIONS :
-        - Return True si `self` et `other` sont égaux, False sinon.
+        - Retourne True si `self` et `other` sont égaux, False sinon.
+        EXCEPTIONS :
+        - Lève une `TypeError` si 'other' n'est pas une instance de `Fraction`.
         """
         pass
 
     def __float__(self) -> float:
         """Retourne la valeur décimale de la fraction.
 
-        PRÉCONDITIONS : None
+        PRÉCONDITIONS : -
         POSTCONDITIONS :
-        - Return un flottant correspondant à la valeur de la fraction.
+        - Retourne un flottant correspondant à la valeur de la fraction.
         """
         pass
 
-    # TODO : [BONUS] You can overload other operators if you wish (ex : <, >, ...)
-
-    # ------------------ Properties checking  ------------------
     def is_zero(self) -> bool:
         """Vérifie si la valeur de la fraction est 0.
 
-        PRÉCONDITIONS : None
+        PRÉCONDITIONS : -
         POSTCONDITIONS :
-        - Return True si la fraction est égale à 0, False sinon.
+        - Retourne True si la fraction est égale à 0, False sinon.
         """
         pass
 
     def is_integer(self) -> bool:
-        """Vérifie si une fraction est entière (exemple : 8/4, 3, 2/2).
+        """Vérifie si une fraction est entière.
 
-        PRÉCONDITIONS : None
+        PRÉCONDITIONS : -
         POSTCONDITIONS :
-        - Return True si la fraction est entière, False sinon.
+        - Retourne True si la fraction est entière, False sinon.
         """
         pass
 
     def is_proper(self) -> bool:
         """Vérifie si la valeur absolue de la fraction est < 1.
 
-        PRÉCONDITIONS : None
+        PRÉCONDITIONS : -
         POSTCONDITIONS :
-        - Return True si la valeur absolue de la fraction est inférieure à 1, False sinon.
+        - Retourne True si la valeur absolue de la fraction est inférieure à 1, False sinon.
         """
         pass
 
     def is_unit(self) -> bool:
         """Vérifie si le numérateur de la fraction réduite est 1.
 
-        PRÉCONDITIONS : None
+        PRÉCONDITIONS : -
         POSTCONDITIONS :
-        - Return True si la fraction est une fraction unité, False sinon.
+        - Retourne True si la fraction est une fraction unité, False sinon.
         """
         pass
 
@@ -176,7 +185,8 @@ class Fraction:
         PRÉCONDITIONS :
         - 'other' doit être une instance de `Fraction`.
         POSTCONDITIONS :
-        - Return True si la valeur absolue de la différence entre `self` et `other` est une fraction unité.
+        - Retourne True si la valeur absolue de la différence entre `self` et `other` est une fraction unité, False sinon.
+        EXCEPTIONS :
+        - Lève une `TypeError` si 'other' n'est pas une instance de `Fraction`.
         """
         pass
-test test test
