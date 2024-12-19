@@ -1,3 +1,10 @@
+"""
+Nom : Zebiri Saad
+
+Classe : 2TM2
+
+"""
+
 from Fraction_implementer import Fraction
 
 

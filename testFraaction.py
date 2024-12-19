@@ -1,3 +1,9 @@
+"""
+Nom : Zebiri Saad
+
+Classe : 2TM2
+
+"""
 import unittest
 from Fraction_implementer import Fraction
 

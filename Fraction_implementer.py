@@ -1,3 +1,9 @@
+"""
+Nom : Zebiri Saad
+
+Classe : 2TM2
+
+"""
 from math import gcd  # Utilisé pour calculer le PGCD (plus grand commun diviseur)
 
 class Fraction:
