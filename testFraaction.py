@@ -133,6 +133,36 @@ class TestFraction(unittest.TestCase):
         f3 = Fraction(1, 3)
         self.assertEqual(f3.as_mixed_number(), "1/3")
 
+    def test_negative_values(self):
+        """Test des valeurs négatives."""
+        f1 = Fraction(-1, 2)
+        self.assertEqual(str(f1), "-1/2")
+
+        f2 = Fraction(3, -6)
+        self.assertEqual(str(f2), "-1/2")
+
+        f3 = Fraction(-4, -8)
+        self.assertEqual(str(f3), "1/2")
+
+    def test_null_values(self):
+        """Test des valeurs nulles."""
+        f1 = Fraction(0, 1)
+        self.assertEqual(str(f1), "0")
+        self.assertTrue(f1.is_zero())
+
+        f2 = Fraction(0, 3)
+        self.assertEqual(str(f2), "0")
+
+    def test_less_than_one(self):
+        """Test des fractions propres (valeurs < 1)."""
+        f1 = Fraction(1, 3)
+        self.assertTrue(f1.is_proper())
+        self.assertEqual(str(f1), "1/3")
+
+        f2 = Fraction(-1, 4)
+        self.assertTrue(f2.is_proper())
+        self.assertEqual(str(f2), "-1/4")
+
 
 if __name__ == "__main__":
     unittest.main()

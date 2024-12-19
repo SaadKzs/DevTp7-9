@@ -19,14 +19,7 @@ class Fraction:
         self._den = den
         self._reduce()
 
-    def _reduce(self):
-        """Simplifie la fraction pour qu'elle soit sous forme réduite."""
-        common_divisor = gcd(self._num, self._den)
-        self._num //= common_divisor
-        self._den //= common_divisor
-        if self._den < 0:  # Assure que le dénominateur est toujours positif
-            self._num = -self._num
-            self._den = -self._den
+
 
     @property
     def numerator(self):
@@ -45,12 +38,13 @@ class Fraction:
         return f"{self._num}/{self._den}"
 
     def as_mixed_number(self):
-        """Retourne une représentation textuelle de la fraction sous forme de nombre mixte."""
+        if self._num == 0:
+            return "0"
         whole = self._num // self._den
         remainder = abs(self._num % self._den)
         if remainder == 0:
             return str(whole)
-        return f"{whole} {remainder}/{self._den}" if whole != 0 else f"{remainder}/{self._den}"
+        return f"{whole if whole != 0 else ''} {remainder}/{self._den}".strip()
 
     def __add__(self, other):
         """Surcharge de l'opérateur + pour les fractions."""
@@ -82,11 +76,18 @@ class Fraction:
             raise ZeroDivisionError("Impossible de diviser par une fraction avec un numérateur de 0.")
         return Fraction(self._num * other._den, self._den * other._num)
 
-    def __pow__(self, other):
-        """Surcharge de l'opérateur ** pour les fractions."""
-        if not isinstance(other, int):
+    def __pow__(self, exponent):
+        if not isinstance(exponent, int):
             raise TypeError("L'exposant doit être un entier.")
-        return Fraction(self._num**other, self._den**other)
+        if exponent < 0:
+            # Inverser la fraction pour la puissance négative
+            if self._num == 0:
+                raise ZeroDivisionError("Division par zéro.")
+            return Fraction(self._den, self._num) ** -exponent
+        elif exponent == 0:
+            return Fraction(1, 1)  # Tout nombre à la puissance de zéro est 1
+        else:
+            return Fraction(self._num ** exponent, self._den ** exponent)
 
     def __eq__(self, other):
         """Surcharge de l'opérateur == pour les fractions."""
@@ -106,9 +107,21 @@ class Fraction:
         """Vérifie si une fraction est entière."""
         return self._num % self._den == 0
 
+    def _reduce(self):
+        """Simplifie la fraction pour qu'elle soit sous forme réduite."""
+        initial_num, initial_den = self._num, self._den
+        common_divisor = gcd(self._num, self._den)
+        self._num //= common_divisor
+        self._den //= common_divisor
+        if self._den < 0:  # Assure que le dénominateur est toujours positif
+            self._num = -self._num
+            self._den = -self._den
+
+
     def is_proper(self):
         """Vérifie si la valeur absolue de la fraction est < 1."""
-        return abs(self._num) < self._den
+        result = abs(self._num) < self._den
+        return result
 
     def is_unit(self):
         """Vérifie si le numérateur de la fraction est 1 dans sa forme réduite."""

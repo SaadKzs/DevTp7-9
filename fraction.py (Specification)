@@ -1,8 +1,8 @@
 class Fraction:
     """Classe représentant une fraction et les opérations qui peuvent être effectuées sur celle-ci.
 
-    Auteur : V. Van den Schrieck
-    Date : Octobre 2021
+    Auteur : Zebiri Saad
+    Date : Decembre 2024
     Cette classe permet de manipuler des fractions via plusieurs opérations.
     """
 
@@ -190,3 +190,5 @@ class Fraction:
         - Lève une `TypeError` si 'other' n'est pas une instance de `Fraction`.
         """
         pass
+
+
